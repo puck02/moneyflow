@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="api-port" content="5189" />
+  <title>MoneyFlow · 极简记账驾驶舱</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-shell ledger-shell">
+    <header class="topbar">
+      <div><p class="eyebrow">personal money cockpit</p><h1>MoneyFlow</h1></div>
+      <div class="topbar-actions">
+        <div class="theme-control" aria-label="主题切换">
+          <button data-theme-choice="auto">Auto</button><button data-theme-choice="light">Light</button><button data-theme-choice="dark">Dark</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="hero-card ledger-hero pie-hero">
+        <div class="hero-pie-wrap"><div id="ledgerPie" class="subject-pie ledger-pie hero-ledger-pie"></div><div class="pie-range-panel"><div class="segmented-control" id="pieRangeControl"><button class="ghost active" data-range="today">今日</button><button class="ghost" data-range="7d">近一周</button><button class="ghost" data-range="month">本月</button><button class="ghost" data-range="year">今年</button><button class="ghost" data-range="custom">自定义</button></div><div id="pieCustomRange" class="pie-custom-range hidden"><input id="pieStartDate" type="date" /><span>—</span><input id="pieEndDate" type="date" /><button id="pieApplyBtn" class="ghost">应用</button></div><div id="pieDirectionControl" class="direction-switch" role="group" aria-label="饼图方向切换"><span class="direction-switch-track" aria-hidden="true"><span class="direction-switch-knob"></span></span><button class="active" data-direction="expense" type="button"><span class="direction-switch-icon">−</span><span>出账</span></button><button data-direction="income" type="button"><span class="direction-switch-icon">＋</span><span>入账</span></button></div><div id="pieRangeLabel" class="pie-range-label">今日出账分类</div><div id="ledgerLegend" class="pie-legend"></div></div></div>
+        <div class="metric-grid"><div class="metric-card"><span id="incomeLabel">今日收入</span><strong id="incomeTotal">0</strong></div><div class="metric-card"><span id="expenseLabel">今日支出</span><strong id="expenseTotal">0</strong></div><div class="metric-card"><span id="netLabel">今日净额</span><strong id="netTotal">0</strong></div><div class="metric-card"><span id="countLabel">今日笔数</span><strong id="ledgerCount">0</strong></div></div>
+      </section>
+
+      <section class="grid one-col">
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">Recent Ledger</p><h3>最近流水</h3></div><button id="ledgerRefreshBtn" class="ghost">刷新账本</button></div><div id="ledgerList" class="list empty">暂无记账记录。</div></article>
+      </section>
+
+      <section class="grid two-col">
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">Month Snapshot</p><h3>本月统计</h3></div><span class="badge">Month</span></div><div id="monthSummary" class="ledger-summary"><div class="summary-chip"><span>本月收入</span><b id="monthIncomeTotal">0</b></div><div class="summary-chip"><span>本月支出</span><b id="monthExpenseTotal">0</b></div><div class="summary-chip"><span>本月净额</span><b id="monthNetTotal">0</b></div><div class="summary-chip"><span>支出第一类</span><b id="topExpenseCategory">-</b></div></div></article>
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">Monthly Rank</p><h3>本月分类排行</h3></div><span class="badge">Rank</span></div><div id="monthlyCategoryRank" class="list empty">暂无月度分类数据。</div></article>
+      </section>
+
+      <section class="grid two-col">
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">Cashflow Trend</p><h3>近 14 天收支</h3></div><span class="badge">Trend</span></div><div id="ledgerTrend" class="list empty">暂无趋势数据。</div></article>
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">Monthly Overview</p><h3>近 6 个月月度汇总</h3></div><span class="badge">Overview</span></div><div id="monthlyOverview" class="list empty">暂无月度汇总。</div></article>
+      </section>
+    </main>
+  </div>
+  <script src="./ledger.js"></script>
+</body>
+</html>
